@@ -23,6 +23,7 @@ public class UserController {
     public Collection<User> getAllUsers() {
         return users.values();
     }
+
     @PostMapping
     public User createUser(@RequestBody @Valid User user) {
         log.info("Поступил запрос на создание пользователя {}", user);
