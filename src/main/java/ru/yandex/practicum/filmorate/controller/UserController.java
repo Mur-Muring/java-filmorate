@@ -6,6 +6,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
+import utils.WorkInterface;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -14,7 +15,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/users")
 @Slf4j
-@Validated
 public class UserController {
     private final Map<Integer, User> users = new HashMap<>();
     private int idGenerator = 1;
@@ -25,6 +25,7 @@ public class UserController {
     }
 
     @PostMapping
+    @Validated(WorkInterface.Create.class)
     public User createUser(@RequestBody @Valid User user) {
         log.info("Поступил запрос на создание пользователя {}", user);
         if (user.getName() == null || user.getName().isBlank()) {
@@ -37,7 +38,8 @@ public class UserController {
     }
 
     @PutMapping
-    public User updateUser(@RequestBody @Valid  User newUser) {
+    @Validated(WorkInterface.Update.class)
+    public User updateUser(@RequestBody @Valid User newUser) {
         log.info("Поступил запрос на обновление пользователя {}", newUser);
         if (users.containsKey(newUser.getId())) {
             User oldUser = users.get(newUser.getId());

@@ -1,43 +1,79 @@
 package ru.yandex.practicum.filmorate;
 
-// Не могу проверить пограничные условия, есть предположение что Error...Controller их перехватывает
-
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.yandex.practicum.filmorate.controller.FilmController;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import ru.yandex.practicum.filmorate.model.Film;
+import utils.WorkInterface;
 
 import java.time.LocalDate;
+import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class FilmControllerTest {
-
-    FilmController filmController;
-    Film film;
+    private Validator validator;
 
     @BeforeEach
-    void start() {
-        filmController = new FilmController();
-        film = new Film();
-        film.setName("Film1");
-        film.setDescription("Description1");
-        film.setReleaseDate(LocalDate.of(2021, 11, 29));
-        film.setDuration(180L);
+    void setUp() {
+        LocalValidatorFactoryBean factoryBean = new LocalValidatorFactoryBean();
+        factoryBean.afterPropertiesSet();
+        validator = factoryBean.getValidator();
     }
 
     @Test
-    void createFilm() {
-        filmController.createFilm(film);
-        assertEquals(filmController.getAllFilms().toArray()[0], film);
+    void shouldPassWhenValidFilm() {
+        Film film = new Film();
+        film.setName("Name");
+        film.setDescription("description");
+        film.setReleaseDate(LocalDate.of(2020, 1, 1));
+        film.setDuration(120L);
+
+        Set<ConstraintViolation<Film>> violations = validator.validate(film, WorkInterface.Create.class);
+        assertThat(violations).isEmpty();
     }
 
     @Test
-    void updateFilm() {
-        filmController.createFilm(film);
-        film.setDuration(100L);
-        film.setId(film.getId());
-        filmController.updateFilm(film);
-        assertEquals(filmController.getAllFilms().toArray()[0], film);
+    void shouldFailWhenNameIsEmpty() {
+        Film film = new Film();
+        film.setName("");
+        film.setDescription("Description");
+        film.setReleaseDate(LocalDate.of(2020, 1, 1));
+        film.setDuration(120L);
+
+        Set<ConstraintViolation<Film>> violations = validator.validate(film, WorkInterface.Create.class);
+        assertThat(violations).hasSize(1);
+
+        ConstraintViolation<Film> violation = violations.iterator().next();
+        assertThat(violation.getMessage()).isEqualTo("не должно быть пустым");
+    }
+
+    @Test
+    void shouldFailWhenReleaseDateIsTooEarly() {
+        Film film = new Film();
+        film.setName("ame");
+        film.setDescription("Description");
+        film.setReleaseDate(LocalDate.of(1700, 1, 1)); // Неверная дата
+        film.setDuration(120L);
+
+        Set<ConstraintViolation<Film>> violations = validator.validate(film);
+        assertThat(violations).hasSize(1);
+    }
+
+    @Test
+    void shouldFailWhenDurationIsNegative() {
+        Film film = new Film();
+        film.setName("Name");
+        film.setDescription("Description");
+        film.setReleaseDate(LocalDate.of(2020, 1, 1));
+        film.setDuration(-100L); // Неверная длительность
+
+        Set<ConstraintViolation<Film>> violations = validator.validate(film);
+        assertThat(violations).hasSize(1);
+
+        ConstraintViolation<Film> violation = violations.iterator().next();
+        assertThat(violation.getMessage()).isEqualTo("должно быть больше 0");
     }
 }

@@ -11,19 +11,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
+import utils.WorkInterface;
 
 import java.util.*;
 
 @RestController
 @RequestMapping("/films")
 @Slf4j
-@Validated
 public class FilmController {
 
     private final Map<Integer, Film> films = new HashMap<>();
     private int idGenerator = 1;
 
     @PostMapping
+    @Validated(WorkInterface.Create.class)
     public Film createFilm(@RequestBody @Valid Film film) {
         log.info("Поступил запрос на добавление фильма {}", film);
         film.setId(idGenerator++);
@@ -38,6 +39,7 @@ public class FilmController {
     }
 
     @PutMapping
+    @Validated(WorkInterface.Update.class)
     public Film updateFilm(@RequestBody @Valid Film newFilm) {
         log.info("Поступил запрос на обновление фильма {}", newFilm);
         if (films.containsKey(newFilm.getId())) {

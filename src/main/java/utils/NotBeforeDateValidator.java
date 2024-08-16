@@ -11,9 +11,13 @@ public class NotBeforeDateValidator implements ConstraintValidator<NotBeforeDate
 
     @Override
     public boolean isValid(LocalDate data, ConstraintValidatorContext constraintValidatorContext) {
-        if (data != null) {
-            return data.isAfter(MIN_DATE);
+        if (data == null) {
+            return false;
         }
-        return true;
+        return !data.isBefore(MIN_DATE);
+    }
+
+    @Override
+    public void initialize(NotBeforeDate constraintAnnotation) {
     }
 }
