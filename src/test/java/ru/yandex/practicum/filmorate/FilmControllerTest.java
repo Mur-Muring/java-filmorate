@@ -47,7 +47,7 @@ public class FilmControllerTest {
         assertThat(violations).hasSize(1);
 
         ConstraintViolation<Film> violation = violations.iterator().next();
-        assertThat(violation.getMessage()).isEqualTo("не должно быть пустым");
+        assertThat(violation.getMessage()).isEqualTo("must not be blank");
     }
 
     @Test
@@ -74,6 +74,6 @@ public class FilmControllerTest {
         assertThat(violations).hasSize(1);
 
         ConstraintViolation<Film> violation = violations.iterator().next();
-        assertThat(violation.getMessage()).isEqualTo("должно быть больше 0");
+        assertThat(violation.getMessage()).isEqualTo("must be greater than 0");
     }
 }

@@ -52,7 +52,7 @@ public class UserControllerTest {
         assertThat(violations).hasSize(1);
 
         ConstraintViolation<User> violation = violations.iterator().next();
-        assertThat(violation.getMessage()).isEqualTo("должно иметь формат адреса электронной почты");
+        assertThat(violation.getMessage()).isEqualTo("must be a well-formed email address");
     }
 
     @Test
@@ -67,7 +67,7 @@ public class UserControllerTest {
         assertThat(violations).hasSize(1);
 
         ConstraintViolation<User> violation = violations.iterator().next();
-        assertThat(violation.getMessage()).isEqualTo("должно соответствовать \"^[a-zA-Z0-9а-яА-Я._-]+$\"");
+        assertThat(violation.getMessage()).isEqualTo("must match \"^[a-zA-Z0-9а-яА-Я._-]+$\"");
     }
 
     @Test
@@ -82,6 +82,6 @@ public class UserControllerTest {
         assertThat(violations).hasSize(1);
 
         ConstraintViolation<User> violation = violations.iterator().next();
-        assertThat(violation.getMessage()).isEqualTo("должно содержать прошедшую дату или сегодняшнее число");
+        assertThat(violation.getMessage()).isEqualTo("must be a date in the past or in the present");
     }
 }
