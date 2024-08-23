@@ -4,7 +4,6 @@ import ru.yandex.practicum.filmorate.model.Film;
 
 import java.util.Collection;
 
-//интерфейс. методы добавления, удаления и модификации объектов.
 public interface FilmStorage {
     Film createFilm(Film film);
 

@@ -15,6 +15,4 @@ public interface UserStorage {
     void deleteUser(User user);
 
     User getUserById(Integer id);
-
-
 }
