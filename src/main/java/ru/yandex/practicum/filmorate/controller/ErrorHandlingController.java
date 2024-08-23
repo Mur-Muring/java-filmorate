@@ -5,7 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 
 import java.util.ArrayList;
@@ -37,8 +40,8 @@ public class ErrorHandlingController {
     }
 
     @ExceptionHandler(ValidationException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ArrayList<String> handleNotFound(ValidationException ex) {
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ArrayList<String> handleViolationException(ValidationException ex) {
         ArrayList<String> exceptions = new ArrayList<>();
         exceptions.add(ex.getMessage());
         return exceptions;
@@ -47,6 +50,15 @@ public class ErrorHandlingController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ArrayList<String> handleNotReadable(HttpMessageNotReadableException ex) {
+        ArrayList<String> exceptions = new ArrayList<>();
+        exceptions.add(ex.getMessage());
+        return exceptions;
+    }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(Exception.class)
+    public ArrayList<String> handleAllUncaughtException(Exception ex) {
         ArrayList<String> exceptions = new ArrayList<>();
         exceptions.add(ex.getMessage());
         return exceptions;
