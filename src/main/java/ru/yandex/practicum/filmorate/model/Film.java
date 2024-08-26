@@ -16,7 +16,7 @@ import java.util.Set;
 public class Film {
     @NotNull(groups = WorkInterface.Update.class)
     int id;
-    @NotEmpty(groups = WorkInterface.Create.class)
+    @NotBlank(groups = WorkInterface.Create.class)
     String name;
     @NotBlank(groups = WorkInterface.Create.class)
     @Size(max = 200)

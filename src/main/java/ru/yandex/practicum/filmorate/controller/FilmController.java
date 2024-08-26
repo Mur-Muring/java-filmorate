@@ -22,7 +22,7 @@ public class FilmController {
 
     @PostMapping
     @Validated(WorkInterface.Create.class)
-    public Film createFilm(@RequestBody @Valid Film film) {
+    public Film createFilm(@Valid @RequestBody Film film) {
         return filmService.createFilm(film);
     }
 
