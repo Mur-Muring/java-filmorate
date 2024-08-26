@@ -1,9 +1,6 @@
 package ru.yandex.practicum.filmorate.model;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -19,7 +16,7 @@ import java.util.Set;
 public class Film {
     @NotNull(groups = WorkInterface.Update.class)
     int id;
-    @NotBlank(groups = WorkInterface.Create.class)
+    @NotEmpty(groups = WorkInterface.Create.class)
     String name;
     @NotBlank(groups = WorkInterface.Create.class)
     @Size(max = 200)
