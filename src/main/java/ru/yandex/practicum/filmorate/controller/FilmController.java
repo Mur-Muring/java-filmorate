@@ -16,6 +16,7 @@ import java.util.List;
 @RequestMapping("/films")
 @Slf4j
 @RequiredArgsConstructor
+@Validated
 public class FilmController {
 
     private final FilmService filmService;
