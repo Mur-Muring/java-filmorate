@@ -7,8 +7,9 @@ import lombok.experimental.FieldDefaults;
 import utils.NotBeforeDate;
 import utils.WorkInterface;
 
-
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -26,4 +27,14 @@ public class Film {
     @NotNull(groups = WorkInterface.Create.class)
     @Positive
     Long duration;
+
+    Set<Integer> likes = new HashSet<>();
+
+    public void addLike(final Integer like) {
+        likes.add(like);
+    }
+
+    public void removeLike(final Integer like) {
+        likes.remove(like);
+    }
 }

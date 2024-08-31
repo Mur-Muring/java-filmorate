@@ -8,6 +8,8 @@ import lombok.experimental.FieldDefaults;
 import utils.WorkInterface;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -25,4 +27,14 @@ public class User {
     @PastOrPresent
     @NotNull(groups = WorkInterface.Create.class)
     LocalDate birthday;
+
+    Set<Integer> friends = new HashSet<>();
+
+    public void addFriend(User user) {
+        friends.add(user.getId());
+    }
+
+    public void deleteFriend(User user) {
+        friends.remove(user.getId());
+    }
 }
