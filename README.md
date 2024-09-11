@@ -1,3 +1,4 @@
+(https://github.com/Mur-Muring/java-filmorate/blob/add_database/%D0%91%D0%94.png)
 
 film - таблица содержит информацию о фильме.
 
