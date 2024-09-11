@@ -1,4 +1,4 @@
-(https://github.com/Mur-Muring/java-filmorate/blob/add_database/%D0%91%D0%94.png)
+[БД](https://github.com/Mur-Muring/java-filmorate/blob/add_database/%D0%91%D0%94.png)
 
 film - таблица содержит информацию о фильме.
 
@@ -14,20 +14,20 @@ rating - содержит информацию о рейтинге.
 
 film_users - содержит информацию о пользователях и фильмах, которые им понравились
 
-Примеры запросов к БД:
+#Примеры запросов к БД:
 
-Получение списка пользователей
+##Получение списка пользователей
 
 SELECT * FROM user;
 
 ____
-Добавление нового пользователя
+##Добавление нового пользователя
 
 INSERT INTO user (email, login, name, birthday)
 
 VALUES ('mail@mail.ru', 'user', 'Иванов', '2000-01-01');
 ____
-Получение списка друзей пользователя с id 1
+##Получение списка друзей пользователя с id 1
 
 SELECT u.login
 
@@ -38,17 +38,17 @@ WHERE u.id = (SELECT friend_id FROM friends
 WHERE user_id = 1 AND status = 'Added');
 
 ___
-Получение списка фильмов
+##Получение списка фильмов
 
 SELECT * FROM film;
 
 ___
-Удаление фильма с id 1
+##Удаление фильма с id 1
 
 DELETE FROM film WHERE id = 1;
 
 ___
-Получение списка 10 самых залайканных фильма
+##Получение списка 10 самых залайканных фильма
 
 SELECT name
 
