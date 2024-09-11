@@ -1,18 +1,18 @@
 package ru.yandex.practicum.filmorate.model;
 
 import jakarta.validation.constraints.*;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import utils.WorkInterface;
 
 import java.time.LocalDate;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @NoArgsConstructor
 public class User {
     @NotNull(groups = WorkInterface.Update.class)
@@ -27,14 +27,14 @@ public class User {
     @PastOrPresent
     @NotNull(groups = WorkInterface.Create.class)
     LocalDate birthday;
+    Set<Integer> friends;
 
-    Set<Integer> friends = new HashSet<>();
-
-    public void addFriend(User user) {
-        friends.add(user.getId());
-    }
-
-    public void deleteFriend(User user) {
-        friends.remove(user.getId());
+    public Map<String, Object> toMap() {
+        Map<String, Object> values = new HashMap<>();
+        values.put("email", email);
+        values.put("login", login);
+        values.put("name", name);
+        values.put("birthday", birthday);
+        return values;
     }
 }

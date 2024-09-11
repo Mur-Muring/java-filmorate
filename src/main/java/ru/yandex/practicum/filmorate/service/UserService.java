@@ -1,23 +1,29 @@
 package ru.yandex.practicum.filmorate.service;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.filmorate.model.User;
+import ru.yandex.practicum.filmorate.storage.FriendStorage;
 import ru.yandex.practicum.filmorate.storage.UserStorage;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Slf4j
 public class UserService {
 
     private final UserStorage userStorage;
+    private final FriendStorage friendStorage;
+
+    @Autowired
+    public UserService(FriendStorage friendStorage, UserStorage userStorage) {
+        this.friendStorage = friendStorage;
+        this.userStorage = userStorage;
+    }
 
     public Collection<User> getAllUsers() {
         log.info("Поступил запрос на получение списка всех пользователей");
@@ -39,42 +45,21 @@ public class UserService {
 
     public void addFriend(Integer userId, Integer friendId) {
         log.info("Поступил запрос на добавление пользователя {} в друзья {}", userId, friendId);
-        User user = userStorage.getUserById(userId);
-        User friend = userStorage.getUserById(friendId);
-        user.addFriend(friend);
-        friend.addFriend(user);
+        friendStorage.addFriend(userId, friendId);
     }
 
     public void deleteFriend(Integer userId, Integer friendId) {
         log.info("Поступил запрос на удаление пользователя {} из друзей {}", userId, friendId);
-        User user = userStorage.getUserById(userId);
-        User friend = userStorage.getUserById(friendId);
-        user.deleteFriend(friend);
-        friend.deleteFriend(user);
+        friendStorage.deleteFriend(userId, friendId);
     }
 
     public List<User> getFriends(Integer id) {
         log.info("Поступил запрос на получение друзей пользователя {}", id);
-        return userStorage.getUserById(id).getFriends().stream()
-                .map(userStorage::getUserById)
-                .collect(Collectors.toList());
+        return friendStorage.getFriends(id);
     }
 
     public List<User> getCommonFriends(Integer userId, Integer friendId) {
         log.info("Поступил запрос на список общих друзей {} и {}", userId, friendId);
-
-        User user = userStorage.getUserById(userId);
-        User friend = userStorage.getUserById(friendId);
-
-        if (user == null || friend == null || user.getFriends() == null || friend.getFriends() == null) {
-            return Collections.emptyList();
-        }
-
-        Set<Integer> userFriends = user.getFriends();
-        userFriends.retainAll(friend.getFriends());
-
-        return userFriends.stream()
-                .map(userStorage::getUserById)
-                .collect(Collectors.toList());
+        return friendStorage.getCommonFriends(userId, friendId);
     }
 }
