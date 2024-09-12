@@ -35,6 +35,7 @@ public class UserDbStorage implements UserStorage {
 
     }
 
+
     @Override
     public User deleteUser(Integer id) {
         if (id == null) {

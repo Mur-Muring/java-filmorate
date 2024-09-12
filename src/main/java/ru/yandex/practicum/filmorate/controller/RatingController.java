@@ -22,6 +22,7 @@ public class RatingController {
         this.ratingService = ratingService;
     }
 
+
     @GetMapping
     public Collection<Rating> getAllMpa() {
         log.info("Получен GET-запрос на получение всех рейтингов");

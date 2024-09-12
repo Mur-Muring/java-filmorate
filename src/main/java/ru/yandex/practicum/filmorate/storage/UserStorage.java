@@ -16,3 +16,4 @@ public interface UserStorage {
 
     User getUserById(Integer id);
 }
+

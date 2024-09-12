@@ -1,4 +1,4 @@
-INSERT INTO mpa (id, name, description)
+INSERT INTO  mpa (id, name, description)
     VALUES (1, 'G', 'у фильма нет возрастных ограничений'),
                (2, 'PG', 'детям рекомендуется смотреть фильм с родителями'),
                (3, 'PG-13', 'детям до 13 лет просмотр не желателен'),

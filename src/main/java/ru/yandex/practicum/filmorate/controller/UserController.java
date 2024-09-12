@@ -24,6 +24,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+
     @PostMapping
     @Validated(WorkInterface.Create.class)
     public User createUser(@RequestBody @Valid User user) {

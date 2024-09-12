@@ -15,6 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
+
     @NotNull(groups = WorkInterface.Update.class)
     int id;
     @Email

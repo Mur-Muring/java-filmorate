@@ -24,6 +24,7 @@ public class RatingService {
                 .collect(Collectors.toList());
     }
 
+
     public Rating getMpaById(Integer id) {
         return ratingStorage.getMpaById(id);
     }
