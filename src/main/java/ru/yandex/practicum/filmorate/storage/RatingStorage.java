@@ -28,10 +28,10 @@ public class RatingStorage {
     }
 
     public Rating getMpaById(Integer id) {
-        Rating rating_mpa;
+        Rating mpa;
         SqlRowSet mpaRows = jdbcTemplate.queryForRowSet("SELECT * FROM mpa WHERE id = ?", id);
         if (mpaRows.first()) {
-            rating_mpa = new Rating(
+            mpa = new Rating(
                     mpaRows.getInt("id"),
                     mpaRows.getString("name"),
                     mpaRows.getString("description")
@@ -39,6 +39,6 @@ public class RatingStorage {
         } else {
             throw new NotFoundException("Рейтинг с id = " + id + " не найден!");
         }
-        return rating_mpa;
+        return mpa;
     }
 }
