@@ -85,7 +85,7 @@ public class FilmDbStorage implements FilmStorage {
     public Film getFilmById(Integer id) {
         SqlRowSet filmRows = jdbcTemplate.queryForRowSet("SELECT * FROM film WHERE id = ?", id);
         if (filmRows.first()) {
-            Rating rating_mpa = ratingService.getMpaById(filmRows.getInt("rating_id"));
+            Rating mpa = ratingService.getMpaById(filmRows.getInt("rating_id"));
             Set<Genre> genres = genreService.getFilmGenres(id);
             film = new Film(
                     filmRows.getInt("id"),
@@ -94,7 +94,7 @@ public class FilmDbStorage implements FilmStorage {
                     Objects.requireNonNull(filmRows.getDate("release_date")).toLocalDate(),
                     filmRows.getLong("duration"),
                     new HashSet<>(likeStorage.getLikes(filmRows.getInt("id"))),
-                    rating_mpa,
+                    mpa,
                     genres);
         } else {
             throw new NotFoundException("Фильм с id = " + id + " не найден!");
