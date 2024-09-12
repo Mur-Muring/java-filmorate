@@ -37,6 +37,7 @@ WHERE u.id = (SELECT friend_id FROM friends
 
 WHERE user_id = 1 AND status = 'Added');
 
+
 ___
 ## Получение списка фильмов
 

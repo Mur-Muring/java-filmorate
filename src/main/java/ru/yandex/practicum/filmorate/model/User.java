@@ -29,6 +29,7 @@ public class User {
     LocalDate birthday;
     Set<Integer> friends;
 
+
     public Map<String, Object> toMap() {
         Map<String, Object> values = new HashMap<>();
         values.put("email", email);

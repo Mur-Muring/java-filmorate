@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @Service
 public class GenreService {
     private final GenreStorage genreStorage;
+
     @Autowired
     public GenreService(GenreStorage genreStorage) {
         this.genreStorage = genreStorage;

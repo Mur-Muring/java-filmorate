@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class RatingService {
     private final RatingStorage ratingStorage;
 
+
     @Autowired
     public RatingService(RatingStorage ratingStorage) {
         this.ratingStorage = ratingStorage;

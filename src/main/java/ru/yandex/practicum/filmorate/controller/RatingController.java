@@ -17,6 +17,7 @@ import java.util.Collection;
 public class RatingController {
     private final RatingService ratingService;
 
+
     @Autowired
     public RatingController(RatingService ratingService) {
         this.ratingService = ratingService;

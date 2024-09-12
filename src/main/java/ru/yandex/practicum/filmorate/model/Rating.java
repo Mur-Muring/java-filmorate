@@ -9,6 +9,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(makeFinal = false, level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 public class Rating {
+
     Integer id;
     String name;
     String description;

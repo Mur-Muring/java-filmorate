@@ -19,6 +19,7 @@ public class UserService {
     private final UserStorage userStorage;
     private final FriendStorage friendStorage;
 
+
     @Autowired
     public UserService(FriendStorage friendStorage, UserStorage userStorage) {
         this.friendStorage = friendStorage;

@@ -29,6 +29,7 @@ import java.util.*;
 @Transactional
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 class FilmorateApplicationTests {
+
     private final UserDbStorage userStorage;
     private final FilmDbStorage filmStorage;
     private final FilmService filmService;

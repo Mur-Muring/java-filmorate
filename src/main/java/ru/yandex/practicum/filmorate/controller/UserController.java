@@ -19,6 +19,7 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
+
     @GetMapping
     public Collection<User> getAllUsers() {
         return userService.getAllUsers();
