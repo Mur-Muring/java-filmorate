@@ -22,7 +22,6 @@ public class GenreController {
         this.genreService = genreService;
     }
 
-
     @GetMapping
     public Collection<Genre> getGenres() {
         log.info("Получен GET-запрос на получение всех жанров");

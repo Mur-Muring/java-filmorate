@@ -28,7 +28,6 @@ public class GenreStorage {
         );
     }
 
-
     public Genre getGenreById(Integer id) {
         Genre genre;
         SqlRowSet genreRows = jdbcTemplate.queryForRowSet("SELECT * FROM genre WHERE id = ?", id);

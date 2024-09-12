@@ -18,7 +18,6 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 public class FilmService {
-
     private final FilmStorage filmStorage;
     private final UserStorage userStorage;
     private final LikeStorage likeStorage;

@@ -9,7 +9,6 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(makeFinal = false, level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 public class Genre {
-
     Integer id;
     String name;
 }

@@ -27,7 +27,6 @@ public class RatingStorage {
         ));
     }
 
-
     public Rating getMpaById(Integer id) {
         Rating rating_mpa;
         SqlRowSet mpaRows = jdbcTemplate.queryForRowSet("SELECT * FROM mpa WHERE id = ?", id);

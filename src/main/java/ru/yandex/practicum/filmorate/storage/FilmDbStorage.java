@@ -26,7 +26,6 @@ public class FilmDbStorage implements FilmStorage {
     Film film;
     String sql;
 
-
     @Autowired
     public FilmDbStorage(JdbcTemplate jdbcTemplate, RatingService ratingService, LikeStorage likeStorage,
                          GenreService genreService) {

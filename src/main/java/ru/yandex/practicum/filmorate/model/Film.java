@@ -17,7 +17,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Film {
-
     @NotNull(groups = WorkInterface.Update.class)
     int id;
     @NotBlank(groups = WorkInterface.Create.class)

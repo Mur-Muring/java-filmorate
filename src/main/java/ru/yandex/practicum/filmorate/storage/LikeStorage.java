@@ -27,7 +27,6 @@ public class LikeStorage {
         this.genreService = genreService;
     }
 
-
     public void addLike(Integer filmId, Integer userId) {
         sql = "INSERT INTO film_like (film_id, user_id) VALUES (?, ?)";
         jdbcTemplate.update(sql, filmId, userId);

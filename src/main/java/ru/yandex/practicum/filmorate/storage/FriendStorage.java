@@ -21,7 +21,6 @@ public class FriendStorage {
     String sql;
     final String error = "Пользователь не найден";
 
-
     @Autowired
     public FriendStorage(JdbcTemplate jdbcTemplate, @Qualifier("userDbStorage") UserStorage userStorage) {
         this.jdbcTemplate = jdbcTemplate;

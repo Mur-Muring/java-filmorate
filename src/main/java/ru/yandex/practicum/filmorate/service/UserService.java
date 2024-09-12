@@ -25,7 +25,6 @@ public class UserService {
         this.userStorage = userStorage;
     }
 
-
     public Collection<User> getAllUsers() {
         log.info("Поступил запрос на получение списка всех пользователей");
         return userStorage.getAllUsers();
