@@ -32,7 +32,7 @@ public class Film {
     @Positive
     Long duration;
     Set<Integer> likes = new HashSet<>();
-    Rating rating_mpa;
+    Rating mpa;
     Set<Genre> genres = new HashSet<>();
 
 
@@ -42,7 +42,7 @@ public class Film {
         values.put("description", description);
         values.put("release_Date", releaseDate);
         values.put("duration", duration);
-        values.put("rating_id", rating_mpa.getId());
+        values.put("rating_id", mpa.getId());
         return values;
     }
 }

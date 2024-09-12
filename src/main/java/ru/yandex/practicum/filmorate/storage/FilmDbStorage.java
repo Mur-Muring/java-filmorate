@@ -42,7 +42,7 @@ public class FilmDbStorage implements FilmStorage {
                 .usingGeneratedKeyColumns("id");
 
         film.setId(simpleJdbcInsert.executeAndReturnKey(film.toMap()).intValue());
-        film.setRating_mpa(ratingService.getMpaById(film.getRating_mpa().getId()));
+        film.setMpa(ratingService.getMpaById(film.getMpa().getId()));
 
         if (film.getGenres() != null && !film.getGenres().isEmpty()) {
             for (Genre genre : film.getGenres()) {
@@ -72,7 +72,7 @@ public class FilmDbStorage implements FilmStorage {
                 film.getDescription(),
                 film.getReleaseDate(),
                 film.getDuration(),
-                film.getRating_mpa().getId(),
+                film.getMpa().getId(),
                 film.getId()
         );
         if (updatedRows == 0) {
