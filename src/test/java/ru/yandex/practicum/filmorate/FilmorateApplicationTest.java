@@ -1,6 +1,7 @@
 package ru.yandex.practicum.filmorate;
 
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.core.AutoConfigureCache;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import ru.yandex.practicum.filmorate.model.Film;
 import ru.yandex.practicum.filmorate.model.Genre;
 import ru.yandex.practicum.filmorate.model.Rating;
@@ -23,11 +25,12 @@ import java.time.LocalDate;
 import java.util.*;
 
 @SpringBootTest
+@ContextConfiguration(classes = FilmorateApplication.class)
 @AutoConfigureTestDatabase
 @AutoConfigureCache
 @Transactional
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-class FilmorateApplicationTests {
+class FilmorateApplicationTest {
     private final UserDbStorage userStorage;
     private final FilmDbStorage filmStorage;
     private final FilmService filmService;
@@ -270,3 +273,4 @@ class FilmorateApplicationTests {
         assertThat(userService.getCommonFriends(firstUser.getId(), secondUser.getId())).hasSize(1);
     }
 }
+

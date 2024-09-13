@@ -19,13 +19,6 @@ public class UserService {
     private final UserStorage userStorage;
     private final FriendStorage friendStorage;
 
-
-    @Autowired
-    public UserService(FriendStorage friendStorage, UserStorage userStorage) {
-        this.friendStorage = friendStorage;
-        this.userStorage = userStorage;
-    }
-
     public Collection<User> getAllUsers() {
         log.info("Поступил запрос на получение списка всех пользователей");
         return userStorage.getAllUsers();

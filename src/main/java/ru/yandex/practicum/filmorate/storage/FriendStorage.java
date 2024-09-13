@@ -50,7 +50,7 @@ public class FriendStorage {
             sql = "DELETE FROM friends WHERE user_id = ? AND friend_id = ?";
             jdbcTemplate.update(sql, userId, friendId);
             if (friend.getFriends().contains(userId)) {
-                sql = "UPDATE friends SET user_id = ? AND friend_id = ? AND status = ? " +
+                sql = "UPDATE friends SET user_id = ? , friend_id = ? , status = ? " +
                         "WHERE user_id = ? AND friend_id = ?";
                 jdbcTemplate.update(sql, friendId, userId, false, friendId, userId);
             }

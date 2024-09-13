@@ -26,16 +26,6 @@ public class FilmService {
     private final String errorUser = "Пользователь не найден";
     private final String errorFilm = "Фильм не найден";
 
-
-    @Autowired
-    public FilmService(@Qualifier("filmDbStorage") FilmStorage filmStorage,
-                       @Qualifier("userDbStorage") UserStorage userStorage,
-                       LikeStorage likeStorage) {
-        this.filmStorage = filmStorage;
-        this.userStorage = userStorage;
-        this.likeStorage = likeStorage;
-    }
-
     public Collection<Film> getAllFilms() {
         log.info("Поступил запрос на получение списка всех фильмов");
         return filmStorage.getAllFilms();

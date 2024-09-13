@@ -12,7 +12,7 @@ import ru.yandex.practicum.filmorate.service.RatingService;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/rating")
+@RequestMapping("/mpa")
 @Slf4j
 public class RatingController {
     private final RatingService ratingService;

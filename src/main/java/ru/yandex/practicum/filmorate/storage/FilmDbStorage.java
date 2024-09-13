@@ -23,8 +23,8 @@ public class FilmDbStorage implements FilmStorage {
     final RatingService ratingService;
     final LikeStorage likeStorage;
     final GenreService genreService;
-    Film film;
-    String sql;
+    private Film film;
+    private String sql;
 
     @Autowired
     public FilmDbStorage(JdbcTemplate jdbcTemplate, RatingService ratingService, LikeStorage likeStorage,
