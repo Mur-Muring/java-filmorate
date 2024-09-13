@@ -1,4 +1,4 @@
-package ru.yandex.practicum.filmorate.utils;
+package utils;
 
 public interface WorkInterface {
     public interface Create {

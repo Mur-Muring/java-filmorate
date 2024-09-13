@@ -1,10 +1,13 @@
 package ru.yandex.practicum.filmorate.model;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.yandex.practicum.filmorate.utils.NotBeforeDate;
-import ru.yandex.practicum.filmorate.utils.WorkInterface;
+import utils.NotBeforeDate;
+import utils.WorkInterface;
 
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
@@ -15,10 +18,9 @@ import java.util.LinkedHashSet;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Film {
-    @Null(groups = WorkInterface.Create.class)
     @NotNull(groups = WorkInterface.Update.class)
     Long id;
-    @NotBlank
+    @NotBlank(groups = WorkInterface.Create.class)
     String name;
     @NotBlank(groups = WorkInterface.Create.class)
     @Size(max = 200)
