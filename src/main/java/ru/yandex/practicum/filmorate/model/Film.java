@@ -20,7 +20,7 @@ import java.util.LinkedHashSet;
 public class Film {
     @NotNull(groups = WorkInterface.Update.class)
     Long id;
-    @NotBlank(groups = WorkInterface.Create.class)
+    @NotBlank
     String name;
     @NotBlank(groups = WorkInterface.Create.class)
     @Size(max = 200)
