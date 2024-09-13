@@ -1,4 +1,4 @@
-[БД](https://github.com/Mur-Muring/java-filmorate/blob/add_database/%D0%91%D0%94.png)
+[БД](https://github.com/Mur-Muring/java-filmorate/blob/add-database/%D0%A1%D1%85%D0%B5%D0%BC%D0%B0%20%D0%91%D0%94.png)
 
 film - таблица содержит информацию о фильме.
 
