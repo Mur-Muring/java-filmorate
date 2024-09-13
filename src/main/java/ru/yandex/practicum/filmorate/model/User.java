@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class User {
     @NotNull(groups = WorkInterface.Update.class)
-    int id;
+    Long id;
     @Email
     @NotBlank(groups = WorkInterface.Create.class)
     String email;
@@ -27,14 +27,5 @@ public class User {
     @PastOrPresent
     @NotNull(groups = WorkInterface.Create.class)
     LocalDate birthday;
-
     Set<Integer> friends = new HashSet<>();
-
-    public void addFriend(User user) {
-        friends.add(user.getId());
-    }
-
-    public void deleteFriend(User user) {
-        friends.remove(user.getId());
-    }
 }
