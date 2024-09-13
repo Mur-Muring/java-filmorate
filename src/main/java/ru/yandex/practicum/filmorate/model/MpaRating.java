@@ -15,6 +15,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Builder
 public class MpaRating {
+
     @NotBlank
     int id;
     String name;

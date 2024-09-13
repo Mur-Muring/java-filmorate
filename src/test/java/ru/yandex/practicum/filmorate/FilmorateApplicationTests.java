@@ -5,9 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(classes = FilmorateApplication.class)
 class FilmorateApplicationTests {
-
     @Test
     void contextLoads() {
     }
-
 }

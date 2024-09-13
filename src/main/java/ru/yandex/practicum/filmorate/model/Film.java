@@ -19,7 +19,6 @@ import java.util.LinkedHashSet;
 @NoArgsConstructor
 public class Film {
     @NotNull(groups = WorkInterface.Update.class)
-
     Long id;
     @NotBlank(groups = WorkInterface.Create.class)
     String name;
