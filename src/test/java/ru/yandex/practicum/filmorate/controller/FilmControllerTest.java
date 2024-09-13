@@ -1,12 +1,12 @@
 package ru.yandex.practicum.filmorate.controller;
 
-/*import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import ru.yandex.practicum.filmorate.model.Film;
-import utils.WorkInterface;
+import ru.yandex.practicum.filmorate.utils.WorkInterface;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -76,4 +76,4 @@ public class FilmControllerTest {
         ConstraintViolation<Film> violation = violations.iterator().next();
         assertThat(violation.getMessage()).isEqualTo("must be greater than 0");
     }
-} */
+}

@@ -5,7 +5,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import utils.WorkInterface;
+import ru.yandex.practicum.filmorate.utils.WorkInterface;
 
 import java.time.LocalDate;
 import java.util.HashSet;

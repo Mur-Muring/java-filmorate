@@ -3,12 +3,11 @@ package ru.yandex.practicum.filmorate.controller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-import ru.yandex.practicum.filmorate.controller.UserController;
 import ru.yandex.practicum.filmorate.model.User;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
-import utils.WorkInterface;
+import ru.yandex.practicum.filmorate.utils.WorkInterface;
 
 import java.time.LocalDate;
 import java.util.Set;
