@@ -1,3 +1,4 @@
+
 MERGE INTO RATING_MPA (MPA_ID, MPA_NAME)
     VALUES (1, 'G'),
     (2, 'PG'),

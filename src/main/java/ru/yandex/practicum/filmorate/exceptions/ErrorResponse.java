@@ -3,7 +3,6 @@ package ru.yandex.practicum.filmorate.exceptions;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 @Getter
 @Setter
 @NoArgsConstructor

@@ -20,7 +20,6 @@ public class JdbcUserRepository implements UserRepository {
     private final NamedParameterJdbcTemplate jdbc;
     private final UserRowMapper userExtractor;
     private final UsersRowMapper usersExtractor;
-
     @Override
     public Collection<User> findAll() {
         String sql = """
