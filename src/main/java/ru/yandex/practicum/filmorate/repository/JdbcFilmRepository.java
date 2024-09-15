@@ -146,7 +146,6 @@ public class JdbcFilmRepository implements FilmRepository {
     public Long isFilmExists(Long id) {
         if (getById(id).isEmpty()) {
             return null;
-        }
-        else return id;
+        } else return id;
     }
 }
