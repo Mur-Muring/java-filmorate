@@ -12,7 +12,9 @@ import ru.yandex.practicum.filmorate.repository.mappers.FilmRowMapper;
 import ru.yandex.practicum.filmorate.repository.mappers.FilmsRowMapper;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
@@ -34,7 +36,9 @@ public class JdbcFilmRepository implements FilmRepository {
                 LEFT JOIN GENRE AS g ON fg.GENRE_ID = g.GENRE_ID;
                 """;
 
-        return jdbc.query(sql, filmsExtractor);
+        Map<Long, Film> filmMap = jdbc.query(sql, Map.of(), filmsExtractor);
+
+        return new ArrayList<>(filmMap.values());
     }
 
     @Override
@@ -139,7 +143,9 @@ public class JdbcFilmRepository implements FilmRepository {
                 LIMIT :count;
                 """;
         SqlParameterSource parameter = new MapSqlParameterSource("count", count);
-        return jdbc.query(sql, parameter, filmsExtractor);
+
+        Map<Long, Film> filmMap = jdbc.query(sql, parameter, filmsExtractor);
+        return new ArrayList<>(filmMap.values());
     }
 
     @Override

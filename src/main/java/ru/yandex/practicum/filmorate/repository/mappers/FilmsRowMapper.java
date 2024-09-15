@@ -6,14 +6,17 @@ import org.springframework.stereotype.Component;
 import ru.yandex.practicum.filmorate.model.Film;
 import ru.yandex.practicum.filmorate.model.Genre;
 import ru.yandex.practicum.filmorate.model.MpaRating;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
 
 @Component
-public class FilmsRowMapper implements ResultSetExtractor<List<Film>> {
+public class FilmsRowMapper  implements ResultSetExtractor<Map<Long, Film>> {
     @Override
-    public List<Film> extractData(final ResultSet rs) throws SQLException, DataAccessException {
+    public Map<Long, Film> extractData(final ResultSet rs) throws SQLException, DataAccessException {
         Map<Long, Film> films = new LinkedHashMap<>();
         while (rs.next()) {
             if (!films.containsKey(rs.getLong("FILM_ID"))) {
@@ -34,6 +37,6 @@ public class FilmsRowMapper implements ResultSetExtractor<List<Film>> {
                 films.get(rs.getLong("FILM_ID")).getGenres().add(genre);
             }
         }
-        return new ArrayList<>(films.values());
+        return films;
     }
 }
