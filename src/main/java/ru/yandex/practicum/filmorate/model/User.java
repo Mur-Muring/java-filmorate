@@ -26,6 +26,6 @@ public class User {
     private String name;
     @PastOrPresent
     @NotNull(groups = WorkInterface.Create.class)
-    LocalDate birthday;
-    private Set<Integer> friends = new HashSet<>();
+    private LocalDate birthday;
+    Set<Integer> friends = new HashSet<>();
 }
