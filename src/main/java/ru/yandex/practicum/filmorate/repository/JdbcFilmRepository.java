@@ -36,9 +36,8 @@ public class JdbcFilmRepository implements FilmRepository {
                 LEFT JOIN GENRE AS g ON fg.GENRE_ID = g.GENRE_ID;
                 """;
 
-        Map<Long, Film> filmMap = jdbc.query(sql, Map.of(), filmsExtractor);
+        return jdbc.query(sql, filmsExtractor);
 
-        return new ArrayList<>(filmMap.values());
     }
 
     @Override
@@ -144,8 +143,7 @@ public class JdbcFilmRepository implements FilmRepository {
                 """;
         SqlParameterSource parameter = new MapSqlParameterSource("count", count);
 
-        Map<Long, Film> filmMap = jdbc.query(sql, parameter, filmsExtractor);
-        return new ArrayList<>(filmMap.values());
+       return jdbc.query(sql, parameter, filmsExtractor);
     }
 
     @Override

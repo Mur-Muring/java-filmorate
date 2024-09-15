@@ -9,14 +9,12 @@ import ru.yandex.practicum.filmorate.model.MpaRating;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
+import java.util.*;
 
 @Component
-public class FilmsRowMapper  implements ResultSetExtractor<Map<Long, Film>> {
+public class FilmsRowMapper  implements ResultSetExtractor <List<Film>> {
     @Override
-    public Map<Long, Film> extractData(final ResultSet rs) throws SQLException, DataAccessException {
+    public List<Film> extractData(final ResultSet rs) throws SQLException, DataAccessException {
         Map<Long, Film> films = new LinkedHashMap<>();
         while (rs.next()) {
             if (!films.containsKey(rs.getLong("FILM_ID"))) {
@@ -37,6 +35,6 @@ public class FilmsRowMapper  implements ResultSetExtractor<Map<Long, Film>> {
                 films.get(rs.getLong("FILM_ID")).getGenres().add(genre);
             }
         }
-        return films;
+        return new ArrayList<>(films.values());
     }
 }
