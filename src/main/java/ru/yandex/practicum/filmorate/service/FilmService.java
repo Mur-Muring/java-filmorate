@@ -54,9 +54,9 @@ public class FilmService {
     }
 
     public void updateFilm(Film film) {
-        if(films.isFilmExists(film.getId())==null){
+        if (films.isFilmExists(film.getId()) == null) {
             throw new NotFoundException("Фильм с id = " + film.getId() + " не найден");
-        };
+        }
         mpaRepository.isMpaExists(film.getMpa().getId());
         films.updateFilm(film);
         genreRepository.saveGenre(film);
