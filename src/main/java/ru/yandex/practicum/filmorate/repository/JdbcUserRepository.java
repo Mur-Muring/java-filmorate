@@ -34,13 +34,12 @@ public class JdbcUserRepository implements UserRepository {
     public Optional<User> getById(Long id) {
         String sql = """
                 SELECT *
-                FROM USERS;
-                    WHERE USER_ID = :user_id;
-                                """;
+                FROM USERS
+                WHERE USER_ID = :user_id;
+                """;
         SqlParameterSource parameter = new MapSqlParameterSource().addValue("user_id", id);
         System.out.println(jdbc.query(sql, parameter, userExtractor));
-
-        return Optional.ofNullable(jdbc.query(sql, userExtractor));
+        return Optional.ofNullable(jdbc.query(sql, parameter, userExtractor));
     }
 
     @Override
