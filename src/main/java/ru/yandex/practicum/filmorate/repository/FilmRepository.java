@@ -2,11 +2,12 @@ package ru.yandex.practicum.filmorate.repository;
 
 import ru.yandex.practicum.filmorate.model.Film;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 public interface FilmRepository {
-    Map<Long, Film> findAll();
+    List<Film> findAll();
 
     Optional<Film> getById(Long id);
 
@@ -18,7 +19,7 @@ public interface FilmRepository {
 
     void removeLike(Long id, Long userId);
 
-    Map<Long, Film> getPopular(Long count);
+    List<Film> getPopular(Long count);
 
-    void isFilmNotExists(Long id);
+    Long isFilmExists(Long id);
 }

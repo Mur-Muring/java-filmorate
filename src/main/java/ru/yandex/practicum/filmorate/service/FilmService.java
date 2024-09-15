@@ -26,7 +26,7 @@ public class FilmService {
 
     public Collection<Film> findAll() {
         log.info("Получение списка фильмов");
-        return films.findAll().values().stream().toList();
+        return films.findAll();
     }
 
     public Film getById(long filmID) {
@@ -54,7 +54,9 @@ public class FilmService {
     }
 
     public void updateFilm(Film film) {
-        films.isFilmNotExists(film.getId());
+        if(films.isFilmExists(film.getId())==null){
+            throw new NotFoundException("Фильм с id = " + film.getId() + " не найден");
+        };
         mpaRepository.isMpaExists(film.getMpa().getId());
         films.updateFilm(film);
         genreRepository.saveGenre(film);
@@ -63,13 +65,13 @@ public class FilmService {
 
 
     public void addLike(Long filmID, Long userId) {
-        films.isFilmNotExists(filmID);
+        films.isFilmExists(filmID);
         films.addLike(filmID, userId);
         log.info("Пользователь с id = {} поставил лайк фильму id = {}", userId, filmID);
     }
 
     public void removeLike(Long filmID, Long userId) {
-        films.isFilmNotExists(filmID);
+        films.isFilmExists(filmID);
         users.isUserNotExists(userId);
         films.removeLike(filmID, userId);
         log.info("Пользователь с id = {} удалил лайк фильму id = {}", userId, filmID);
@@ -77,7 +79,7 @@ public class FilmService {
 
     public Collection<Film> getPopular(Long count) {
         log.info("Получение списка {} популярных фильмов", count);
-        return films.getPopular(count).values().stream().toList();
+        return films.getPopular(count);
     }
 
 }

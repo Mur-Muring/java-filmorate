@@ -19,19 +19,19 @@ import java.util.LinkedHashSet;
 @NoArgsConstructor
 public class Film {
     @NotNull(groups = WorkInterface.Update.class)
-    Long id;
+    private Long id;
     @NotBlank
-    String name;
+    private String name;
     @NotBlank(groups = WorkInterface.Create.class)
     @Size(max = 200)
-    String description;
+    private String description;
     @NotBeforeDate
     @NotNull(groups = WorkInterface.Create.class)
-    LocalDate releaseDate;
+    private LocalDate releaseDate;
     @NotNull(groups = WorkInterface.Create.class)
     @Positive
-    Long duration;
+    private Long duration;
     @NotNull MpaRating mpa;
     @Builder.Default
-    LinkedHashSet<Genre> genres = new LinkedHashSet<>();
+    private LinkedHashSet<Genre> genres = new LinkedHashSet<>();
 }

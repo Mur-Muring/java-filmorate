@@ -16,6 +16,6 @@ import lombok.experimental.FieldDefaults;
 public class Genre {
 
     @NotBlank
-    int id;
-    String name;
+    private int id;
+    private String name;
 }

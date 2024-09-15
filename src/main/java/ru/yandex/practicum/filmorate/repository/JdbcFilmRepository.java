@@ -13,6 +13,7 @@ import ru.yandex.practicum.filmorate.repository.mappers.FilmRowMapper;
 import ru.yandex.practicum.filmorate.repository.mappers.FilmsRowMapper;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -26,7 +27,7 @@ public class JdbcFilmRepository implements FilmRepository {
     private final FilmsRowMapper filmsExtractor;
 
     @Override
-    public Map<Long, Film> findAll() {
+    public List<Film> findAll() {
         String sql = """
                 SELECT *
                 FROM FILMS AS f
@@ -34,7 +35,8 @@ public class JdbcFilmRepository implements FilmRepository {
                 LEFT JOIN FILM_GENRE AS fg ON f.FILM_ID = fg.FILM_ID
                 LEFT JOIN GENRE AS g ON fg.GENRE_ID = g.GENRE_ID;
                 """;
-        return jdbc.query(sql, Map.of(), filmsExtractor);
+
+        return jdbc.query(sql, filmsExtractor);
     }
 
     @Override
@@ -116,7 +118,7 @@ public class JdbcFilmRepository implements FilmRepository {
     }
 
     @Override
-    public Map<Long, Film> getPopular(Long count) {
+    public List<Film> getPopular(Long count) {
         String sql = """
                 SELECT COUNT(p.user_id) AS sum_likes,
                         f.FILM_ID,
@@ -143,9 +145,10 @@ public class JdbcFilmRepository implements FilmRepository {
     }
 
     @Override
-    public void isFilmNotExists(Long id) {
+    public Long isFilmExists(Long id) {
         if (getById(id).isEmpty()) {
-            throw new NotFoundException("Фильм с id = " + id + " не найден");
+            return null;
         }
+        else return id;
     }
 }
