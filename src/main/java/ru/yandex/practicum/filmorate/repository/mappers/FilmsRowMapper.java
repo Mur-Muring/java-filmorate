@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 @Component
-public class FilmsRowMapper  implements ResultSetExtractor <List<Film>> {
+public class FilmsRowMapper implements ResultSetExtractor<List<Film>> {
     @Override
     public List<Film> extractData(final ResultSet rs) throws SQLException, DataAccessException {
         Map<Long, Film> films = new LinkedHashMap<>();
