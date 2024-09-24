@@ -16,25 +16,16 @@ import java.util.Set;
 @NoArgsConstructor
 public class User {
     @NotNull(groups = WorkInterface.Update.class)
-    int id;
+    private Long id;
     @Email
     @NotBlank(groups = WorkInterface.Create.class)
-    String email;
+    private String email;
     @Pattern(regexp = "^[a-zA-Z0-9а-яА-Я._-]+$")
     @NotBlank(groups = WorkInterface.Create.class)
-    String login;
-    String name;
+    private String login;
+    private String name;
     @PastOrPresent
     @NotNull(groups = WorkInterface.Create.class)
-    LocalDate birthday;
-
+    private LocalDate birthday;
     Set<Integer> friends = new HashSet<>();
-
-    public void addFriend(User user) {
-        friends.add(user.getId());
-    }
-
-    public void deleteFriend(User user) {
-        friends.remove(user.getId());
-    }
 }

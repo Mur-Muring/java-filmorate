@@ -1,40 +1,37 @@
 package ru.yandex.practicum.filmorate.model;
 
-import jakarta.validation.constraints.*;
-import lombok.AccessLevel;
-import lombok.Data;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import utils.NotBeforeDate;
 import utils.WorkInterface;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedHashSet;
 
+@Builder
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Film {
     @NotNull(groups = WorkInterface.Update.class)
-    int id;
-    @NotBlank(groups = WorkInterface.Create.class)
-    String name;
+    private Long id;
+    @NotBlank
+    private String name;
     @NotBlank(groups = WorkInterface.Create.class)
     @Size(max = 200)
-    String description;
+    private String description;
     @NotBeforeDate
     @NotNull(groups = WorkInterface.Create.class)
-    LocalDate releaseDate;
+    private LocalDate releaseDate;
     @NotNull(groups = WorkInterface.Create.class)
     @Positive
-    Long duration;
-
-    Set<Integer> likes = new HashSet<>();
-
-    public void addLike(final Integer like) {
-        likes.add(like);
-    }
-
-    public void removeLike(final Integer like) {
-        likes.remove(like);
-    }
+    private Long duration;
+    @NotNull MpaRating mpa;
+    @Builder.Default
+    private LinkedHashSet<Genre> genres = new LinkedHashSet<>();
 }
